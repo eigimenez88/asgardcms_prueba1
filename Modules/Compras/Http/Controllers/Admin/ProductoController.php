@@ -43,7 +43,8 @@ class ProductoController extends AdminBaseController
      */
     public function create()
     {
-        return view('compras::admin.productos.create');
+        $producto = new \Producto;
+        return view('compras::admin.productos.create', compact('producto'));
     }
 
     /**
@@ -54,7 +55,9 @@ class ProductoController extends AdminBaseController
      */
     public function store(CreateProductoRequest $request)
     {
-        $this->producto->create($request->all());
+        $producto = \Producto::create($request->all());
+
+        event( new \ProductoWasCreated( $producto, $request->all() ) );
 
         return redirect()->route('admin.compras.producto.index')
             ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('compras::productos.title.productos')]));
@@ -78,9 +81,12 @@ class ProductoController extends AdminBaseController
      * @param  UpdateProductoRequest $request
      * @return Response
      */
-    public function update(Producto $producto, UpdateProductoRequest $request)
+    public function update(\Producto $producto, UpdateProductoRequest $request)
     {
-        $this->producto->update($producto, $request->all());
+        $producto->update($request->all());
+
+        event( new \ProductoWasUpdated( $producto, $request->all() ) );        
+        
 
         return redirect()->route('admin.compras.producto.index')
             ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('compras::productos.title.productos')]));
@@ -92,9 +98,11 @@ class ProductoController extends AdminBaseController
      * @param  Producto $producto
      * @return Response
      */
-    public function destroy(Producto $producto)
+    public function destroy(\Producto $producto)
     {
-        $this->producto->destroy($producto);
+        event(new \ProductoWasDeleted( $producto ));
+
+        $producto->delete($producto);
 
         return redirect()->route('admin.compras.producto.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('compras::productos.title.productos')]));

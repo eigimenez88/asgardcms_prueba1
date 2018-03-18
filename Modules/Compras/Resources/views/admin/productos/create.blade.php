@@ -22,7 +22,7 @@
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
                         <?php $i++; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
-                            @include('compras::admin.productos.partials.create-fields', ['lang' => $locale])
+                            @include('compras::admin.productos.partials.fields', ['lang' => $locale])
                         </div>
                     @endforeach
 

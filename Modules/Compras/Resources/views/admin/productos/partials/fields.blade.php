@@ -6,5 +6,10 @@
         <div class="col-md-4"> 
             {!! Form::normalInput('marca', "Marca del Producto", $errors, $producto) !!}
         </div>
+        <div class="row">
+            <div class="col-md-4">
+                @mediaSingle('archivo', $producto)
+            </div>
+        </div>
     </div>
 </div>

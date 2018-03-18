@@ -235,6 +235,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
+        "Producto" => Modules\Compras\Entities\Producto::class,
+        'ProductoWasCreated' => Modules\Compras\Events\ProductoWasCreated::class,
+        'ProductoWasUpdated' => Modules\Compras\Events\ProductoWasUpdated::class,
+        'ProductoWasDeleted' => Modules\Compras\Events\ProductoWasDeleted::class
     ],
 
 ];

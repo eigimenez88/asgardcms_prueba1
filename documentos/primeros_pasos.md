@@ -41,3 +41,9 @@ CREANDO UN NUEVO MODULO;
 
 7-CREAR NUEVO FORMULARIO, ASGARD YA GENERA LAS VISTAS NECESARIAS, NOSOTROS SOLO AGREGAMOS LOS CAMPOS Y 
     CONFIGURAMOS, LAS VISTAS ESTAN EN 'Modules/nombreModulo/Resources/views/admin'
+
+
+REGISTRAR CLASES PARA USAR GLOBALMENTE: 
+    EN EL ARCHIVO config/app.php al final registar el alias deseado y la direccion de la clase, para usar
+    globalmente solo se usa una barra opuesta: ejemplo \Producto
+

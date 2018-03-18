@@ -51,7 +51,7 @@ class PublicController extends BasePublicController
         $this->throw404IfNotFound($page);
 
         $template = $this->getTemplateForPage($page);
-
+        
         return view($template, compact('page'));
     }
 
